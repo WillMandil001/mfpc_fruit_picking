@@ -11,3 +11,10 @@ We will use ProMP's to generate initial trajectories and then use MFPC to mainta
 ### ProMP:
 
 ### Real World Testing:
+
+
+
+### TO DO:
+- install pybullet.
+- get simulation of franka robot working.
+- get simpulation of soft fruit working.

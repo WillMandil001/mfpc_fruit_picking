@@ -1,0 +1,6 @@
+devel_space: /home/will/Robotics/mfpc_frui_picking/devel
+install: false
+install_space: /home/will/Robotics/mfpc_frui_picking/install
+profile: default
+source_space: /home/will/Robotics/mfpc_frui_picking/src
+workspace: /home/will/Robotics/mfpc_frui_picking
