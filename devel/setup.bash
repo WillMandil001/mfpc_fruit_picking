@@ -1,1 +1,1 @@
-/home/will/Robotics/mfpc_frui_picking/devel/.private/catkin_tools_prebuild/setup.bash
+/home/will/Robotics/mfpc_fruit_picking/devel/.private/catkin_tools_prebuild/setup.bash
