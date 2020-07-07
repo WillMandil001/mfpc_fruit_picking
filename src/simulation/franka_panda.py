@@ -19,11 +19,11 @@ class FrankaPanda(object):
 		self.offset = np.array(offset)
 		self.p = p
 		self.t = 0.
-		self.franka = p.loadURDF("franka_panda/panda.urdf", np.array([0,0,0]), [0,0,0,1], useFixedBase=True)  # , flags=flags # flags = p.URDF_ENABLE_CACHED_GRAPHICS_SHAPES
+		self.franka = self.p.loadURDF("franka_panda/panda.urdf", np.array([0,0,0]), [0,0,0,1], useFixedBase=True)  # , flags=flags # flags = p.URDF_ENABLE_CACHED_GRAPHICS_SHAPES
 		jointPositions=start_state
 		# jointPositions=[0.98, 0.458, 0.31, -2.24, -0.30, 2.66, 2.32, 0.02, 0.02]
 		index = 0
-		for j in range(p.getNumJoints(self.franka)):
+		for j in range(self.p.getNumJoints(self.franka)):
 			self.p.changeDynamics(self.franka, j, linearDamping=0, angularDamping=0)
 			info = self.p.getJointInfo(self.franka, j)
 			jointName = info[1]
@@ -41,7 +41,7 @@ class FrankaPanda(object):
 	def step(self):
 		t = self.t
 		self.t += self.time_step
-		pos = [0.5, 0.5, 0.5]
+		pos = [0.2, 0.2, 1]
 		# orn = self.p.getQuaternionFromEuler([math.pi/2.,0.,0.])
 		orn = [0,1,0,0]
 		jointPoses = self.p.calculateInverseKinematics(self.franka,pandaEndEffectorIndex, pos, orn, ll, ul,
