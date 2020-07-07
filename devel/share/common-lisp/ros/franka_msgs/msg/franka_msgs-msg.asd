@@ -1,0 +1,1 @@
+/home/will/Robotics/mfpc_fruit_picking/devel/.private/franka_msgs/share/common-lisp/ros/franka_msgs/msg/franka_msgs-msg.asd

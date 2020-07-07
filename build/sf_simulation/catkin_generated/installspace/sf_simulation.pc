@@ -1,0 +1,8 @@
+prefix=/home/will/Robotics/mfpc_fruit_picking/install
+
+Name: sf_simulation
+Description: Description of sf_simulation
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

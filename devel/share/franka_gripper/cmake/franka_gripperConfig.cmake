@@ -1,0 +1,1 @@
+/home/will/Robotics/mfpc_fruit_picking/devel/.private/franka_gripper/share/franka_gripper/cmake/franka_gripperConfig.cmake
