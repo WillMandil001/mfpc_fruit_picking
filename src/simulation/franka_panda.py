@@ -1,6 +1,8 @@
+import os
 import time
 import math
 import numpy as np
+import pybullet_data
 
 useNullSpace = 1
 ikSolver = 0
@@ -22,6 +24,7 @@ class FrankaPanda(object):
 		self.franka = self.p.loadURDF("franka_panda/panda.urdf", np.array([0,0,0]), [0,0,0,1], useFixedBase=True)  # , flags=flags # flags = p.URDF_ENABLE_CACHED_GRAPHICS_SHAPES
 		jointPositions=start_state
 		# jointPositions=[0.98, 0.458, 0.31, -2.24, -0.30, 2.66, 2.32, 0.02, 0.02]
+		print(">>>>><><>>>>>>>>", str(self.p.getNumJoints(self.franka)))
 		index = 0
 		for j in range(self.p.getNumJoints(self.franka)):
 			self.p.changeDynamics(self.franka, j, linearDamping=0, angularDamping=0)
