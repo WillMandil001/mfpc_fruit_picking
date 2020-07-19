@@ -1,0 +1,1 @@
+/home/will/Robotics/mfpc_fruit_picking/devel/.private/ros_bridge_pybullet/lib/pkgconfig/ros_bridge_pybullet.pc

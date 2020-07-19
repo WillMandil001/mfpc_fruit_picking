@@ -1,0 +1,3 @@
+Symlinking /home/will/Robotics/mfpc_fruit_picking/devel/lib/pkgconfig/ros_bridge_pybullet.pc
+Symlinking /home/will/Robotics/mfpc_fruit_picking/devel/share/ros_bridge_pybullet/cmake/ros_bridge_pybulletConfig-version.cmake
+Symlinking /home/will/Robotics/mfpc_fruit_picking/devel/share/ros_bridge_pybullet/cmake/ros_bridge_pybulletConfig.cmake

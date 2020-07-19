@@ -234,21 +234,19 @@
       <geometry>
         <sphere radius="0.05"/>
       </geometry>
-      <origin rpy="1.57 0 0" xyz="-0.005 0.15 -0.005"/>
+      <origin rpy="1.57 0 0" xyz="0 0 0.03"/>
       <material name="red"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.05"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -1"/>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
     </collision>
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 -1"/>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
       <mass value="0.5"/>
-        <inertia  ixx="0.00001" ixy="0.0" ixz="0.0"
-                  iyy="0.00001" iyz="0.0"
-                  izz="0.00001" />    
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>   
     </inertial>
   </link>
   <joint name="panda_joint9" type="fixed">
