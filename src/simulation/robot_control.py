@@ -34,22 +34,25 @@ start_pose = [0.53, 0.53, 1.0]
 start_ori = [0, 0, 0, 1]
 cluster2 = strawberry_cluster.StrawberryCluster(p, start_pose, start_ori)
 
-# c, addr = s.accept()
-# print('Got connection from', addr)
+c, addr = s.accept()
+print('Got connection from', addr)
 for i in range(0,1000):
-	# q = p.getJointState(cluster.pendulum, 1)[0]
-	# print(q)
+	j1 = p.getJointState(panda.franka, 0)[0]
+	j2 = p.getJointState(panda.franka, 1)[0]
+	j3 = p.getJointState(panda.franka, 2)[0]
+	j4 = p.getJointState(panda.franka, 3)[0]
+	j5 = p.getJointState(panda.franka, 4)[0]
+	j6 = p.getJointState(panda.franka, 5)[0]
+	j7 = p.getJointState(panda.franka, 6)[0]
 
-	# pos, vel, rf, jmt = p.getJointStates(panda.franka, [0,1,2,3])
-	# print(vel)
-	print(p.getJointState(panda.franka, 1))
-	# joint_state = '[0,1,2,3,4,5,6,7]'
-	# c.send(joint_state.encode('utf-8')) 
+	print([j1, j2, j3, j4, j5, j6, j7])
+	joint_state = str([j1, j2, j3, j4, j5, j6, j7])
+	c.send(joint_state.encode('utf-8')) 
 
 	p.configureDebugVisualizer(p.COV_ENABLE_SINGLE_STEP_RENDERING) 
-	# panda.step()
+	panda.step()
 
 	p.stepSimulation()
 	time.sleep(timeStep)
 
-# s.close()
+s.close()
