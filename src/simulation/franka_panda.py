@@ -1,8 +1,10 @@
 import os
 import time
 import math
+import socket
 import numpy as np
 import pybullet_data
+from socket import error as SocketError
 
 useNullSpace = 1
 ikSolver = 0
@@ -17,6 +19,8 @@ rp = jointPositions
 
 class FrankaPanda(object):
 	def __init__(self, p, offset, time_step, start_state):
+		self.s = socket.socket()
+		self.port = 22342
 		self.time_step = time_step
 		self.offset = np.array(offset)
 		self.p = p
@@ -52,3 +56,17 @@ class FrankaPanda(object):
 		for i in range(pandaNumDofs):
 				self.p.setJointMotorControl2(self.franka, i, self.p.POSITION_CONTROL, jointPoses[i],force=5 * 240.)
 		pass
+
+	def wait_for_trajectory(self):
+		self.s.connect(('127.0.0.2', self.port))
+		trajectory = str(self.s.recv(4096).decode('utf-8'))
+		self.s.close()
+		return trajectory
+
+	def step_from_ros(self, trajectory):
+		try:
+			print(trajectory, "\n")
+			for i in range(pandaNumDofs):
+					self.p.setJointMotorControl2(self.franka, i, self.p.POSITION_CONTROL, trajectory[i],force=5 * 240.)
+		except:
+			print("performed total trajectory")

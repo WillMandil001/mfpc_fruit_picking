@@ -1,5 +1,5 @@
 import time
-import socket      
+import socket
 import franka_panda
 import pybullet_data
 import strawberry_cluster
@@ -8,8 +8,8 @@ import numpy as np
 import pybullet as p
   
 s = socket.socket()
-port = 12342
-s.bind(('', port))
+port = 12346
+s.bind(('127.0.0.11', port))
 s.listen(5)
 
 p.connect(p.GUI)
@@ -36,7 +36,7 @@ cluster2 = strawberry_cluster.StrawberryCluster(p, start_pose, start_ori)
 
 c, addr = s.accept()
 print('Got connection from', addr)
-for i in range(0,1000):
+for i in range(0,5000):
 	j1 = p.getJointState(panda.franka, 0)[0]
 	j2 = p.getJointState(panda.franka, 1)[0]
 	j3 = p.getJointState(panda.franka, 2)[0]
@@ -45,12 +45,34 @@ for i in range(0,1000):
 	j6 = p.getJointState(panda.franka, 5)[0]
 	j7 = p.getJointState(panda.franka, 6)[0]
 
-	print([j1, j2, j3, j4, j5, j6, j7])
+	# print([j1, j2, j3, j4, j5, j6, j7])
 	joint_state = str([j1, j2, j3, j4, j5, j6, j7])
 	c.send(joint_state.encode('utf-8')) 
 
-	p.configureDebugVisualizer(p.COV_ENABLE_SINGLE_STEP_RENDERING) 
-	panda.step()
+	p.configureDebugVisualizer(p.COV_ENABLE_SINGLE_STEP_RENDERING)
+	if i == 500:
+		trajectory = panda.wait_for_trajectory()
+		print(trajectory)
+		trajectory = trajectory.replace("[", "")
+		trajectory = trajectory.replace("]", "")
+		steps = trajectory.split(")")
+		steps = steps[:-1]
+		for i in range(0, len(steps)):
+			steps[i] = steps[i].replace(", (", "")
+			steps[i] = steps[i].replace("(", "")
+			steps[i] = steps[i].split(", ")
+			print(steps[i])
+			for j in range(0, len(steps[i])):
+				steps[i][j] = float(steps[i][j])
+
+	elif i > 500:
+		try:
+			panda.step_from_ros(steps[i-501])
+		except:
+			pass
+	else:
+		panda.step()
+
 
 	p.stepSimulation()
 	time.sleep(timeStep)
